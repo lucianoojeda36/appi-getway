@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import config from '../../config';
 
 interface CustomRequest extends Request {
   user?: any;
@@ -21,7 +19,7 @@ function authenticateToken(
     return;
   }
 
-  const secretKey = 'pepe';
+  const secretKey: string = config.jwtSecretKey;
 
   jwt.verify(token, secretKey, (err, user) => {
     if (err) {

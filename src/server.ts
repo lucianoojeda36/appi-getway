@@ -6,7 +6,7 @@ dotenv.config();
 
 const app = express();
 const PORT: number = Number(process.env.PORT) || 3000;
-const HOST: String = process.env.Host || 'localhost';
+const HOST: string | undefined = process.env.HOST;
 
 app.use(apiRoutes);
 

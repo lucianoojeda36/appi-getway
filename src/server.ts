@@ -6,6 +6,7 @@ dotenv.config();
 
 const app = express();
 const PORT: number = Number(process.env.PORT) || 3000;
+const HOST: String = process.env.Host || 'localhost';
 
 app.use(apiRoutes);
 
@@ -14,5 +15,5 @@ app.get('/', (req: Request, res: Response): void => {
 });
 
 app.listen(PORT, (): void => {
-  console.log(`API Gateway corriendo en http://localhost:${PORT}`);
+  console.log(`API Gateway corriendo en http://${HOST}:${PORT}`);
 });

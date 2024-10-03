@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      # Add other services as needed
+  
+  auth-service:
+    image: your-auth-service-image # or you can build it if you have a Dockerfile for auth service
+    ports:
+      - "8000:8000"

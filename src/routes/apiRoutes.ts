@@ -5,6 +5,8 @@ import config from '../../config';
 
 const router = Router();
 
+console.log('-------config.authServiceUrl-----', config.authServiceUrl);
+
 router.post('/auth/register', (req, res) => {
   createProxyMiddleware({
     target: config.authServiceUrl,

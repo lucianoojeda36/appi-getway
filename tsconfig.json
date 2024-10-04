@@ -1,12 +1,12 @@
 {
-    "compilerOptions": {
-      "target": "ES2020",
-      "module": "commonjs",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "outDir": "./dist"
-    },
-    "include": ["src/**/*"]
-  }
-  
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": "./"  // Cambiado a './' para incluir todos los archivos en la raíz
+  },
+  "include": ["src/**/*", "config.ts"]  // Asegúrate de incluir el archivo config.ts
+}

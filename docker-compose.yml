@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.8'  # Asegúrate de especificar la versión del archivo docker-compose
 
 services:
   api-gateway:
@@ -6,12 +6,21 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:8080"  # Asegúrate de que tu app escuche en este puerto
     depends_on:
       - auth-service
-      # Add other services as needed
-  
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0  # Escuchar en todas las interfaces
+      - AUTH_SERVICE_URL=http://auth-service:8000
+      - SERVICE_1_URL=http://service1:3002
+      - JWT_SECRET_KEY=SECRET_KEY
+
   auth-service:
-    image: your-auth-service-image # or you can build it if you have a Dockerfile for auth service
+    image: lucianoojeda36/auth-service:latest 
     ports:
       - "8000:8000"
+    environment:
+      - JWT_SECRET_KEY=SECRET_KEY
+      - SERVICE_PORT=8000
+      - HOST=auth-service

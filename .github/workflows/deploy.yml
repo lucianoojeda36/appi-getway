@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main
+      - main   # O la rama que desees monitorear
 
 jobs:
   deploy:
@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Actualización a la versión v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # Actualización a la versión v3
       with:
         node-version: '18'
 
@@ -24,8 +24,8 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
-        source: './'
-        target: '/home/ec2-user/projects/appi-getway'
+        source: './'  # Ruta en GitHub donde están los archivos que quieres copiar
+        target: '/home/ec2-user/projects/appi-getway'  # Ruta destino en EC2
 
     - name: Execute SSH commands on EC2 with PM2
       uses: appleboy/ssh-action@v0.1.6
@@ -37,4 +37,3 @@ jobs:
           cd /home/ec2-user/projects/appi-getway
           npm install  # Asegura que las dependencias estén instaladas
           pm2 restart app  # Reinicia la aplicación para aplicar cambios
-

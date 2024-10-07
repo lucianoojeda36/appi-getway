@@ -11,12 +11,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Actualización a la versión v3
+      uses: actions/checkout@v3  # Se mantiene, ya que es la versión más reciente
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3  # Actualización a la versión v3
+      uses: actions/setup-node@v3  # Se mantiene, ya que es la versión más reciente
       with:
-        node-version: '16'
+        node-version: '20'  # Actualiza a Node.js 20
 
     - name: Copy files via SSH to EC2
       uses: appleboy/scp-action@v0.1.4
@@ -37,3 +37,4 @@ jobs:
           cd /home/ec2-user/projects/appi-getway
           npm install  # Asegura que las dependencias estén instaladas
           pm2 restart app  # Reinicia la aplicación para aplicar cambios
+

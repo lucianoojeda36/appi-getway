@@ -11,19 +11,19 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4  # Se mantiene, ya que es la versión más reciente
+      uses: actions/checkout@v4  # Usa la versión más reciente
 
     - name: Set up Node.js
-      uses: actions/setup-node@v4  # Se mantiene, ya que es la versión más reciente
+      uses: actions/setup-node@v4  # Usa la versión más reciente
       with:
-        node-version: '20'  # Actualiza a Node.js 20
+        node-version: '20'  # Usa Node.js 20
 
     - name: Copy files via SCP to EC2
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.EC2_HOST }}  # Host de tu instancia EC2
         username: ${{ secrets.EC2_USER }}  # Nombre de usuario en EC2 (generalmente "ec2-user")
-        key: ${{ secrets.EC2_SSH_KEY }}  # Clave privada SSH
+        key: ${{ secrets.EC2_SSH_KEY }}  # Clave privada SSH (debería ser una clave PEM)
         source: './'  # Ruta en GitHub donde están los archivos que quieres copiar
         target: '/home/ec2-user/projects/appi-getway'  # Ruta destino en EC2
 
@@ -35,7 +35,8 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}  # Clave privada SSH
         script: |
           cd /home/ec2-user/projects/appi-getway
-          npm install  # Asegura que las dependencias estén instaladas
+          npm install  # Asegúrate de que las dependencias estén instaladas
           pm2 restart app  # Reinicia la aplicación para aplicar cambios
+
 
 

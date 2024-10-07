@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main  # O la rama que desees monitorear
+      - main  
 
 jobs:
   deploy:
@@ -38,7 +38,7 @@ jobs:
         script: |
           cd /home/ec2-user/projects/appi-getway
           npm install
-          pm2 restart app
+          pm2 restart appi-getway
 
 
 

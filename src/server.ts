@@ -18,4 +18,4 @@ app.listen(PORT, (): void => {
   console.log(`API Gateway corriendo en http://${HOST}:${PORT}`);
 });
 
-console.log('---------hola mundo-----------');
+console.log('---------hola mundo--------------');

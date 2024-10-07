@@ -17,5 +17,3 @@ app.get('/', (req: Request, res: Response): void => {
 app.listen(PORT, (): void => {
   console.log(`API Gateway corriendo en http://${HOST}:${PORT}`);
 });
-
-console.log('---------hola mundo------esta--------');

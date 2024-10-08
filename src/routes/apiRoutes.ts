@@ -5,13 +5,13 @@ import config from '../../config';
 
 const router = Router();
 
-console.log('-------config.authServiceUrl-----', config.authServiceUrl);
-
 router.post('/auth/register', (req, res) => {
   createProxyMiddleware({
     target: config.authServiceUrl,
     changeOrigin: true,
     pathRewrite: { '^/auth/register': '/api/register' },
+    timeout: 5000,
+    logger: console,
   })(req, res);
 });
 
@@ -20,6 +20,7 @@ router.post('/auth/login', (req, res) => {
     target: config.authServiceUrl,
     changeOrigin: true,
     pathRewrite: { '^/auth/login': '/api/login' },
+    logger: console,
   })(req, res);
 });
 
